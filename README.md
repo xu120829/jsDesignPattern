@@ -1,2 +1,3 @@
 # jsDesignPattern
-js design pattern code.
+record js pattern code.
+
