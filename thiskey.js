@@ -39,8 +39,22 @@ console.log(getName());//globalName
       }
       callback();
    };
+   // using this
+   document.getElementById('div1').onclick = function(){
+       var self = this;
+       var callback = function(){
+           console.log(self.id); // div1
+       }
+       callback();
+   };
+   // under strict 
+   function func(){
+       "use strict"
+       console.log(this); // undefined
+   }
  </script>
 </html>
+
 
 
 
