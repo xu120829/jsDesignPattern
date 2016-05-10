@@ -54,9 +54,28 @@ console.log(getName());//globalName
    }
  </script>
 </html>
-
-
-
+//constructor
+var myClass = function(){
+    this.name = 'sven';
+};
+var obj = new myClass();
+console.log(obj.name);// sven
+// or constructor return object.
+var myClass = function(){
+    this.name = 'sven';
+    return {
+        name:'anne'
+    }
+};
+var obj = new myClass();
+console.log(obj.name);// anne
+// or constructor return str
+var myClass = function(){
+    this.name = 'sven';
+    return 'anne';
+};
+var obj = new myClass();
+console.log(obj.name);//sven
 
 //document
 document.getElementById = (function(func){
