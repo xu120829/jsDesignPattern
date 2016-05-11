@@ -77,6 +77,32 @@ var myClass = function(){
 var obj = new myClass();
 console.log(obj.name);//sven
 
+//Function.prototype.call or Function.prototype.apply
+var obj1 = {
+    name:'sven',
+    getName:function(){
+        return this.name;
+    }
+};
+var obj2 = {
+    name:'anne'
+};
+console.log(obj1.getName()); // sven
+console.log(obj1.getName.call(obj2); // anne
+
+// lost this
+var obj = {
+    myName:'sven',
+    getName:function(){
+        return this.myName;
+    }
+};
+console.log(obj.getName());// sven
+var getName2 = obj.getName;
+console.log(getName2());// undefined
+
+
+
 //document
 document.getElementById = (function(func){
     return function(){
