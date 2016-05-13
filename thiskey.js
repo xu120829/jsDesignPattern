@@ -100,9 +100,28 @@ var obj = {
 console.log(obj.getName());// sven
 var getName2 = obj.getName;
 console.log(getName2());// undefined
-
-
-
+// getId
+var getId = function(id){
+    return document.getElementById(id);
+};
+getId('div1');
+// or
+var getId = document.getElementById;
+getId('div1');
+// html
+<html>
+<body>
+  <div id="div1">I am a div.</div>
+</body>
+<script>
+var getId = document.getElementById;
+getId('div1');
+</script>
+</html>
+// this is error method.
+// because most of engine of document.getElementById method 
+// inner using this.
+// this should be as document obj.
 //document
 document.getElementById = (function(func){
     return function(){
@@ -113,3 +132,7 @@ document.getElementById = (function(func){
 var getId = document.getElementById;
 var div = getId('div1');
 console.log(div);//div1
+
+
+
+
