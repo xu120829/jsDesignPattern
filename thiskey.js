@@ -152,7 +152,8 @@ var func = function(a,b,c){
     console.log(this ===null);
 };
 func.apply(null, [1,2,3]);// true
-
+//
+Math.max.apply(null,[1,3,5,4,7]);//output:7
 
 
 
