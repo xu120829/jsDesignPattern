@@ -132,6 +132,35 @@ document.getElementById = (function(func){
 var getId = document.getElementById;
 var div = getId('div1');
 console.log(div);//div1
+// call apply
+var func = function(a,b,c){
+    console.log([a,b,c]); // [1,2,3]
+};
+func.apply(null, [1,2,3]);
+var func = function(a,b,c){
+    console.log([a,b,c]);
+};
+func.call(null,1,2,3);//[1,2,3]
+//window
+var func = function(a,b,c){
+    console.log(this == window);
+};
+func.apply(null, [1,2,3]); // true
+// use strict 
+var func = function(a,b,c){
+    "use strict":
+    console.log(this ===null);
+};
+func.apply(null, [1,2,3]);// true
+
+
+
+
+
+
+
+
+
 
 
 
