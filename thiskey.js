@@ -154,8 +154,79 @@ var func = function(a,b,c){
 func.apply(null, [1,2,3]);// true
 //
 Math.max.apply(null,[1,3,5,4,7]);//output:7
-
-
+//call apply how to use
+//change this
+var obj1 = {
+    name:'sven'
+};
+var obj2 = {
+    name:'anne'
+};
+window.name = 'window';
+var getName = function(){
+    console.log(this.name);
+};
+getName();//window
+getName.call(obj1);//sven
+getName.apply(obj2);// anne
+//bind
+Function.prototype.bind = function(context){
+    var self = this;
+    return function(){
+        return self.apply(context, arguments);
+    }
+};
+var obj = {
+    name:'sven'
+};
+var func = function(){
+    console.log(this.name);
+}.bind(obj);
+func();// sven
+//more complex bind
+Function.prototype.bind = function(){
+    var self = this,
+        context = [].shift.call(arguments),
+        args = [].slice.call(arguments);
+    return function(){
+        return self.apply(context, [].concat.call(args, [].slice.call(arguments)));
+    }
+};
+var obj = {
+    name:'sven'
+};
+var func = function(a,b,c,d){
+    console.log(this.name);//seven
+    console.log([a,b,c,d]);//[1,2,3,4]
+}.bind(obj, 1, 2);
+func(3,4);
+//using other obj is method
+var aMethod = function(name){
+    this.name = name;
+};
+var bMethod = fucntion(){
+    aMethod.apply(this,arguments);
+};
+bMethod.prototype.getName = function(){
+    return this.name;
+};
+var bobj = new bMethod('sven');
+console.log(bobj.getname());// sven
+//
+(function(){
+    Array.prototype.push.call(arguments, 3);
+    console.log(arguments);// output:1,23
+})(1, 2);
+//V8 engine push source code
+function ArrayPush(){
+    var n = TO_UINT32(this.length);
+    var m = %_ArgumentsLength();
+    for(var i = 0; i < m; i++){
+        this[i + n] = %_Arguments(i);
+    }
+    this.length = n + m;
+    return this.length;
+};
 
 
 
