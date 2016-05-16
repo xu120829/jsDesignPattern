@@ -36,7 +36,6 @@ for(var i = 0, len = nodes.length; i < len; i++){
 </script>
 </body>
 </html>
-
 // type
 var Type = {};
 for(var i = 0, type; type = ['String','Array','Number'][i++];){
@@ -48,8 +47,18 @@ for(var i = 0, type; type = ['String','Array','Number'][i++];){
 };
 Type.isArray([]);
 Type.isString("str");
-
-
+//closure
+var mult = function(){
+    var a = 1;
+    for(var i = 0, l = arguments.length; i < 1; i++){
+        a = a * arguments[i];
+    }
+    return a;
+};
+var cache = {};
+var mult = function(){
+    var arges = function(){}
+};
 
 
 
