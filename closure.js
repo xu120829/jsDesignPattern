@@ -117,7 +117,40 @@ var report = (function(){
         img.src = src;
     }
 })();
-
+//
+var extent = function(){
+    var value = 0;
+    return {
+        call:function(){
+            value ++;
+            console.log(value);
+        }
+    }
+};
+var ext = extent();
+ext.call();//1
+ext.call();//2
+//
+var extent = {
+    value:0,
+    call:function(){
+        this.value++;
+        console.log(this.value);
+    }
+};
+extent.call();//1
+extent.call();//2
+//
+var Extent = function(){
+    this.value = 0;
+};
+Extent.prototype.call = function(){
+    this.value++;
+    console.log(this.value);
+};
+var extent = Extent();
+extent.call();//1
+extent.call();//2
 
 
 
