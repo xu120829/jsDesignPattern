@@ -84,9 +84,39 @@ var mult = (function(){
         return cache[args] = a;
     }
 })();
-
-
-
+//
+var mult = (function(){
+    var cache = {};
+    var calculate = function(){
+        var a = 1;
+        for(var i = 0, l = arguments.length; i < l; i++){
+            a = a* arguments[i];
+        }
+        return a;
+    };
+    return function(){
+        var args = Array.prototype.join.call(arguments, ',');
+        if(args in cache){
+            return cache[args];
+        }
+        return cache[args] = calculate.apply(null, arguments);
+    }
+})();
+//
+var report = function(src){
+    var img = new Images();
+    img.src = src;
+};
+report('http://xxx.com/filepath');
+//
+var report = (function(){
+    var imgs = [];
+    return function(src){
+        var img = new Images();
+        imgs.push(img);
+        img.src = src;
+    }
+})();
 
 
 
