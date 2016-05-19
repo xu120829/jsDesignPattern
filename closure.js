@@ -151,6 +151,42 @@ Extent.prototype.call = function(){
 var extent = Extent();
 extent.call();//1
 extent.call();//2
+//command pattern.
+<html>
+<body>
+ <button id="execute">click me execute command</button>
+ <button id="undo">click me execute command</button>
+ <script>
+ var Tv = {
+     open:function(){
+         console.log("opent tv.");
+     },
+     close:function(){
+         console.log("close tv.");
+     }
+     }
+ };
+ var OpenTvCommand = function(receiver){
+     this.receiver = receiver;
+ };
+ OpenTvCommand.prototype.execute = function(){
+     this.receiver.open();
+ };
+  OpenTvCommand.prototype.undo = function(){
+     this.receiver.close();
+ };
+ var setCommand = function(command){
+     document.getElementById('execute').onclick = function(){
+         command.execute();
+     }
+     document.getElementById('undo').onclick = function(){
+         command.undo();
+     }
+ };
+ setCommand(new OpenTvCommand(Tv));
+ </script>
+</body>
+</html>
 
 
 
