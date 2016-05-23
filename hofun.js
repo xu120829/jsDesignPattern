@@ -32,6 +32,31 @@ var appendDiv = function(callback){
 appendDiv(function(node){
    node.style.display = 'none';
 });
-
-
+//Array.prototype.sort
+[1,6,3].sort(function(a,b){
+   return a - b;
+});//[1,3,6]
+[1,6,3].sort(function(a,b){
+   return b - a;
+});
+// return value
+var isString = function(obj){
+   return Object.prototype.toString.call(obj) === '[object String]';
+};
+var isArray = function(obj){
+   return Object.prototype.toString.call(obj) === '[object Array]';
+};
+var isNumber = function(obj){
+   return Object.prototype.toString.call(obj) === '[object Number]';
+};
+//
+var isType = function(type){
+   return function(obj){
+      return Object.prototype.toString.call(obj) === '[object ' + type + ']';
+   }
+}
+var isString = isType('String');
+var isArray = isType('Array');
+var isNumber = isType('Number');
+console.log(isArray([1,3,4]));//true
 
