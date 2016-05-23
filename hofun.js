@@ -18,3 +18,20 @@ var appendDiv = function(){
    }
 };
 appendDic();
+//
+var appendDiv = function(callback){
+   for(var i = 0; i < 100; i++){
+      var div = document.createElement('div');
+      div.innerHTML = i;
+      document.body.appendChild(div);
+      if(typeof callback === 'function'){
+         callback(div);
+      }
+   }
+};
+appendDiv(function(node){
+   node.style.display = 'none';
+});
+
+
+
