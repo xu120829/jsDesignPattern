@@ -70,5 +70,43 @@ for(var i = 0, type; type = ['String', 'Array', 'Number'][i++];){
 };
 Type.isArray([]);//output true
 Type.isString("str");//output true
+//
+var getSingle = function(fn){
+   var ret;
+   return function(){
+      return ret || (ret = fn.apply(this, arguments));
+   };
+};
+var getScript = getSingle(function(){
+   return document.createElement('script');
+});
+var script1 = getScript();
+var script2 = getScript();
+console.log(script1 === script2);
+//
+Function.prototype.before = function(beforefn){
+   var _self = this;
+   return function(){
+      beforefn.apply(this, arguments);
+      return _self.apply(this, arguments);
+   }
+};
+Function.prototype.after = function(afterfn){
+   var _self = this;
+   return function(){
+      var ret = _self.apply(this, arguments);
+      afterfn.apply(this, arguments);
+      return ret;
+   }
+};
+var func = function(){
+   console.log(3);
+};
+func = func.before(function(){
+   console.log(5);
+}).after(function(){
+   console.log(1);
+});
+func();// 5 , 3 , 1
 
 
