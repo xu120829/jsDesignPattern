@@ -59,4 +59,16 @@ var isString = isType('String');
 var isArray = isType('Array');
 var isNumber = isType('Number');
 console.log(isArray([1,3,4]));//true
+//
+var Type = {};
+for(var i = 0, type; type = ['String', 'Array', 'Number'][i++];){
+   (function(type){
+      Type['is' + type] = function(obj){
+         return Object.prototype.toString.call(obj) === '[object ' + type + ']';
+      }
+   })(type)
+};
+Type.isArray([]);//output true
+Type.isString("str");//output true
+
 
