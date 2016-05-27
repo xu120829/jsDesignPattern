@@ -108,5 +108,14 @@ func = func.before(function(){
    console.log(1);
 });
 func();// 5 , 3 , 1
+//currying
+var monthlyCost = 0;
+var cost = function(money){
+   monthlyCost += money;
+};
+cost(100);
+cost(200);
+cost(300);
+console.log(monthlyCost);// 600
 
 
