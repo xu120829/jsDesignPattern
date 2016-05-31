@@ -187,3 +187,34 @@ var push = Array.prototype.push.uncurrying();
    push(arguments, 4);
    console.log(arguments);//[1,2,3,4]
 })(1,2,3);
+//
+for(var i = 0, fn, ary = ['push','shift','forEach']; fn = ary[i++];){
+   Array[fn] = Array.prototype[fn].uncurrying();
+};
+var obj = {
+   "length":3,
+   "0":1,
+   "1":2,
+   "2":3
+};
+Array.push(obj, 4);
+console.log(obj.length);//4
+var first = Array.shift(obj);
+console.log(first);//1
+console.log(obj);//{0:2,1:3,2:4,lenght:3}
+Array.forEach(obj, function(i, n){
+   console.log(n);// 0,1,2
+});
+var call = Function.prototype.call.uncurrying();
+var fn = function(name){
+   console.log(name);
+};
+call(fn, window, 'sven');// sven
+var apply = Function.prototype.uncurrying();
+var fn = function(name){
+   console.log(this.name);
+   console.log(arguments);
+};
+apply(fn, {name:'sven'}, [1, 2, 3]);
+
+
