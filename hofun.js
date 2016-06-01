@@ -216,5 +216,26 @@ var fn = function(name){
    console.log(arguments);
 };
 apply(fn, {name:'sven'}, [1, 2, 3]);
+//
+Function.prototype.uncurrying = function(){
+   var self = this;
+   return function(){
+      var obj = Array.prototype.shift.call(arguments);
+      return self.apply(obj, arguments);
+   };
+};
+var push = Array.prototype.push.uncurrying();
+var obj = {
+   "length":1,
+   "0":1
+};
+push(obj, 2);
+console.log(obj);//{0:1, 1:2, lenght:2}
+Function.prototype.uncurrying = function(){
+   var self = this;
+   return function(){
+      return Function.prototype.call.apply(self, arguments);
+   }
+};
 
 
