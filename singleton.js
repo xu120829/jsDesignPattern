@@ -54,6 +54,15 @@ var CreateDiv = (function(){
 var a = new CreateDiv('sven1');
 var b = new CreateDiv('sven2');
 console.log(a === b);//true
+//
+var CreateDiv = function(html){
+	if(instance){
+		return instance;
+	}
+	this.html = html;
+	this.init();
+	return instance = this;
+};
 
 /*
 *
