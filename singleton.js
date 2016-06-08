@@ -63,6 +63,16 @@ var CreateDiv = function(html){
 	this.init();
 	return instance = this;
 };
+//
+var CreateDiv = function(html){
+	this.html = html;
+	this.init();
+};
+CreateDiv.prototype.init = function(){
+	var div = document.createElement('div');
+	div.innerHTML = this.html;
+	document.body.appendChild(div);
+};
 
 /*
 *
