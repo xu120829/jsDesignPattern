@@ -85,6 +85,36 @@ var ProxySingletonCreateDiv = (function(){
 var a = new ProxySingletonCreateDiv('sven1');
 var b = new ProxySingletonCreateDiv('sven2');
 console.log(a === b);
+//namespace
+var namespace1 = {
+	a:function(){
+		console.log(1);
+	},
+	b:function(){
+		console.log(2);
+	}
+};
+var myApp = {};
+myApp.namespace = function(name){
+	var parts = name.split('.');
+	var current = myApp;
+	for(var i in parts){
+		if(!current[parts[i]]){
+			current[parts[i]] = {};
+		}
+		current = current[parts[i]];
+	}
+};
+myApp.namespace('event');
+myApp.namespace('dom.style');
+console.dir(myApp);
+//equals this below code.
+var myApp = {
+	event:{},
+	dom:{
+		style:{}
+	}
+};
 
 /*
 *
