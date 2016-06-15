@@ -115,6 +115,24 @@ var myApp = {
 		style:{}
 	}
 };
+//
+var user = (function(){
+	var _name = 'sven', _age = 29;
+	return {
+		getUserInfo:function(){
+			return _name + '-' + _age;
+		}
+	}
+})();
+Singleton.getInstance = (function(){
+	var instance = null;
+	return function(name){
+		if(!instance){
+			instance = new Singleton(name);
+		}
+		return instance;
+	}
+})();
 
 /*
 *
