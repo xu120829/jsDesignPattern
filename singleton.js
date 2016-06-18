@@ -115,7 +115,6 @@ var myApp = {
 		style:{}
 	}
 };
-//
 var user = (function(){
 	var _name = 'sven', _age = 29;
 	return {
@@ -133,7 +132,56 @@ Singleton.getInstance = (function(){
 		return instance;
 	}
 })();
-
+//
+<html>
+<body>
+<button id="loginBtn">login</button>
+</body>
+<script>
+var loginLayer = (function(){
+	var div = document.createElement('div');
+	div.innerHTML = 'I am login frame.';
+	div.style.display = 'none';
+	document.body.appendChild(div);
+	return div;
+})();
+document.getElementById('loginBtn').onclick = function(){
+	loginLayer.style.display = 'block';
+};
+</script>
+</html>
+//
+<html>
+<body>
+<button id="loginBtn">login</button>
+</body>
+<script>
+var createLoginLayer = (function(){
+	var div = document.createElement('div');
+	div.innerHTML = 'I am login frame.';
+	div.style.display = 'none';
+	document.body.appendChild(div);
+	return div;
+})();
+document.getElementById('loginBtn').onclick = function(){
+        var loginLayer = createLoginLayer();
+	loginLayer.style.display = 'block';
+};
+</script>
+</html>
+//
+var createLoginLayer = (function(){
+	var div;
+	return function(){
+		if(!div){
+			var div = document.createElement('div');
+			div.innerHTML = 'I am login frame.';
+			div.style.display = 'none';
+			document.body.appendChild(div);
+		}
+		return div;
+	}
+})();
 /*
 *
 *常规单例模式代码
